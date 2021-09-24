@@ -254,16 +254,19 @@ async function publish(argv) {
     formData.append('image_xl', fs.createReadStream(path.join(cwd(), app.images.xlarge)));
     meta.image_xl = app.images.xlarge;
   }
-  app.drivers.forEach((driver) => {
-    formData.append(`driver_sm_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.small)));
-    formData.append(`driver_lg_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.large)));
-    meta[`driver_sm_${driver.id}`] = driver.images.small;
-    meta[`driver_lg_${driver.id}`] = driver.images.large;
-    if (driver.images.xlarge) {
-      formData.append(`driver_xl_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.xlarge)));
-      meta[`driver_xl_${driver.id}`] = driver.images.xlarge;
-    }
-  });
+
+  if (app.drivers) {
+    app.drivers.forEach((driver) => {
+      formData.append(`driver_sm_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.small)));
+      formData.append(`driver_lg_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.large)));
+      meta[`driver_sm_${driver.id}`] = driver.images.small;
+      meta[`driver_lg_${driver.id}`] = driver.images.large;
+      if (driver.images.xlarge) {
+        formData.append(`driver_xl_${driver.id}`, fs.createReadStream(path.join(cwd(), driver.images.xlarge)));
+        meta[`driver_xl_${driver.id}`] = driver.images.xlarge;
+      }
+    });
+  }
 
   const files = uploadFiles(cwd());
   files.forEach(({file, key}) => {
@@ -275,7 +278,6 @@ async function publish(argv) {
 
   const url = argv.dev ? 'http://localhost:4000/apps' : 'https://homey-commun-staging-pefdjbllo.herokuapp.com/apps';
   try {
-    // await axios.post(`https://homey-commun-staging-pefdjbllo.herokuapp.com/apps`, formData, {
     await axios.post(url, formData, {
       headers: {
         ...formData.getHeaders(),
