@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "aws-amplify": "^3.3.26",
-    "aws-sdk": "^2.874.0",
+    "aws-sdk": "^2.1122.0",
     "aws4": "^1.10.1",
     "axios": "^0.20.0",
     "chalk": "^4.1.0",
