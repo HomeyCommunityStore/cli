@@ -41,7 +41,7 @@
     "passport": "^0.4.1",
     "passport-auth0": "^1.4.0",
     "slash": "^3.0.0",
-    "tar": "^6.0.2",
+    "tar": "^6.1.11",
     "yargs": "^15.3.1"
   },
   "keywords": [
