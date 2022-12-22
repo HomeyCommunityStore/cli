@@ -33,7 +33,7 @@
     "fs-extra": "^5.0.0",
     "homey": "^2.15.2",
     "inquirer": "^7.1.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwks-rsa": "^2.0.4",
     "keytar": "^6.0.1",
     "mime-types": "^2.1.27",
