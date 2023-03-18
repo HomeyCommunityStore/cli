@@ -276,7 +276,7 @@ async function publish(argv) {
 
   formData.append('meta', JSON.stringify(meta));
 
-  const url = argv.dev ? 'http://localhost:4000/apps' : 'https://homey-commun-staging-pefdjbllo.herokuapp.com/apps';
+  const url = argv.dev ? 'http://localhost:4040/apps' : 'https://homey-commun-staging-pefdjbllo.herokuapp.com/apps';
   try {
     await axios.post(url, formData, {
       headers: {
